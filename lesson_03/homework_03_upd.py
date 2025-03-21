@@ -1,13 +1,11 @@
-alice_in_wonderland = '"Would you tell me, please, which way I ought to go from here?"\n"That depends a good deal on where you want to get to," said the Cat.\n"I don't much care where ——" said Alice.\n"Then it doesn't matter which way you go," said the Cat.\n"—— so long as I get somewhere," Alice added as an explanation.\n"Oh, you're sure to do that," said the Cat, "if you only walk long enough."'
+#alice_in_wonderland = '"Would you tell me, please, which way I ought to go from here?"\n"That depends a good deal on where you want to get to," said the Cat.\n"I don't much care where ——" said Alice.\n"Then it doesn't matter which way you go," said the Cat.\n"—— so long as I get somewhere," Alice added as an explanation.\n"Oh, you're sure to do that," said the Cat, "if you only walk long enough."'
 # task 01 == Розділіть змінну alice_in_wonderland так, щоб вона займала декілька фізичних лінії
-alice_in_wonderland = """
-"Would you tell me, please, which way I ought to go from here?"
-"That depends a good deal on where you want to get to," said the Cat.
-"I don't much care where ——" said Alice.
-"Then it doesn't matter which way you go," said the Cat.
-"—— so long as I get somewhere," Alice added as an explanation.
-"Oh, you're sure to do that," said the Cat, "if you only walk long enough."
-"""
+alice_in_wonderland = "\"Would you tell me, please, which way I ought to go from here?\"\n" \
+                      "\"That depends a good deal on where you want to get to,\" said the Cat.\n" \
+                      "\"I don\'t much care where ——\" said Alice.\n" \
+                      "\"Then it doesn\'t matter which way you go,\" said the Cat.\n" \
+                      "\"—— so long as I get somewhere,\" Alice added as an explanation.\n" \
+                      "\"Oh, you\'re sure to do that,\" said the Cat, \"if you only walk long enough.\""
 
 # task 02 == Знайдіть та відобразіть всі символи одинарної лапки (') у тексті
 for char in alice_in_wonderland:
@@ -15,7 +13,7 @@ for char in alice_in_wonderland:
         print(char) 
 
 # task 03 == Виведіть змінну alice_in_wonderland на друк
-print (alice_in_wonderland)
+print (f"{alice_in_wonderland}")
 
 """
     # Задачі 04 -10:
@@ -32,7 +30,7 @@ print (alice_in_wonderland)
 black_sea = 436402
 azov_sea = 37800
 total_sqr_km = black_sea + azov_sea
-print(total_sqr_km)
+print(f"{total_sqr_km}")
 
 # task 05
 """
@@ -49,9 +47,8 @@ s1 = total_items - total_items_s2_and_s3
 s2 = total_items_s1_and_s2 - s1           
 s3 = total_items_s2_and_s3 - s2       
 
-print(s1)
-print(s2)
-print(s3)
+print(f"{s1},{s2},{s3}")
+
 
 # task 06
 """
@@ -62,7 +59,7 @@ print(s3)
 """
 monthly_payment = 1179
 total_sum = monthly_payment * 18
-print(total_sum)
+print(f"{total_sum}")
 
 # task 07
 """
@@ -77,7 +74,7 @@ c = 2789 % 5
 d = 7248 % 6
 e = 7128 % 5
 f = 19224 % 9
-print(a, b, c, d, e, f)
+print(f"{a},{b},{c},{d},{e},{f}")
 
 # task 08
 """
@@ -105,7 +102,7 @@ water_count = 3
 
 total = (pizza_size_L * pizza_L_count) + (pizza_size_M * pizza_M_count) + (juice * juice_count) 
 + (cake * cake_count) + (water * water_count)
-print(total)
+print(f"{total}")
 
 
 # task 09
@@ -118,7 +115,7 @@ print(total)
 all_photos = 232
 photos_per_page = 8
 total_pages = all_photos // photos_per_page
-print(total_pages)
+print(f"{total_pages}")
 
 # task 10
 """
