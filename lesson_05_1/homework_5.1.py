@@ -59,5 +59,5 @@ for key, value in car_data.items():
 sorted_list = sorted(filtered_list, key=lambda x: x[1][4])
 
 for key, value in sorted_list[:5]:
-  print(key, value[:5])
+  print(key, value)
 
