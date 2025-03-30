@@ -30,10 +30,14 @@ print((people_records))
 
 age_allowed = 30
 check_indexes = [6, 10, 13]
+people_age_allowed = 0
+people_age_NOT_allowed = 0
 
 for i in check_indexes:
   age = people_records[i][2]
   if age >= age_allowed:
-      print("You are allowed")
+      people_age_allowed += 1
+      print(f"{people_age_allowed} You are allowed")
   else:
-      print("Not allowed")
+    people_age_NOT_allowed += 1
+    print(f"{people_age_NOT_allowed} Not allowed")
