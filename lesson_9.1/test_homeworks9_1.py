@@ -1,0 +1,115 @@
+from homeworks import (
+    total_sea_area,
+    calculate_items_per_warehouse,
+    calculate_total_price,
+    remain_from_num_devision,
+    count_total_order_price,
+    road_trip_stats,
+    has_h,
+    add_string_items_to_the_list,
+    even_numbers_from_list
+)
+
+# Task 04
+def test_task_04_positive():
+    assert total_sea_area(436402, 37800) == 474202
+
+def test_task_04_negative():
+    assert total_sea_area(436402, 37800) != 500000
+
+# Task 05
+def test_task_05_positive():
+    assert calculate_items_per_warehouse(375291, 250449, 222950) == (152341, 98108, 124842)
+
+def test_task_05_negative():
+    assert calculate_items_per_warehouse(375291, 250449, 222950) != (100000, 100000, 100000)
+
+# Task 06
+def test_task_06_positive():
+    assert calculate_total_price(1179, 18) == 21222
+
+def test_task_06_negative():
+    assert calculate_total_price(1179, 18) != 20000
+
+# Task 07
+def test_task_07_positive():
+    values = [8019 % 8, 9907 % 9, 2789 % 5, 7248 % 6, 7128 % 5, 19224 % 9]
+    assert remain_from_num_devision(values) == [3, 7, 4, 0, 3, 0]
+
+def test_task_07_negative():
+    values = [8019 % 8, 9907 % 9, 2789 % 5, 7248 % 6, 7128 % 5, 19224 % 9]
+    assert remain_from_num_devision(values) != [0, 0, 0, 0, 0, 0]
+
+# Task 08
+def test_task_08_positive():
+    prices = {
+        "pizza_L": 274,
+        "pizza_M": 218,
+        "juice": 35,
+        "cake": 350,
+        "water": 21
+    }
+    counts = {
+        "pizza_L": 4,
+        "pizza_M": 2,
+        "juice": 4,
+        "cake": 1,
+        "water": 3
+    }
+    assert count_total_order_price(prices, counts) == 2085
+
+def test_task_08_negative():
+    prices = {
+        "pizza_L": 274,
+        "pizza_M": 218,
+        "juice": 35,
+        "cake": 350,
+        "water": 21
+    }
+    counts = {
+        "pizza_L": 4,
+        "pizza_M": 2,
+        "juice": 4,
+        "cake": 1,
+        "water": 3
+    }
+    assert count_total_order_price(prices, counts) != 3000
+
+# Task 09
+def test_task_09_positive():
+    photos = 232
+    per_page = 8
+    expected_pages = (photos + per_page - 1) // per_page
+    assert expected_pages == 29
+
+def test_task_09_negative():
+    photos = 232
+    per_page = 8
+    assert (photos + per_page - 1) // per_page != 28
+
+# Task 10
+def test_task_10_positive():
+    assert road_trip_stats(1600, 9, 48) == (144.0, 3)
+
+def test_task_10_negative():
+    assert road_trip_stats(1600, 9, 48) != (200, 4)
+
+# Task 6.2
+def test_task_6_2_positive():
+    assert has_h("Python") == True
+
+def test_task_6_2_negative():
+    assert has_h("apple") == False
+# Task 6.3
+def test_task_6_3_positive():
+    assert add_string_items_to_the_list(['1', 2, 'hi']) == ['1', 'hi']
+
+def test_task_6_3_negative():
+    assert add_string_items_to_the_list([1, 2, 3]) == []
+
+# Task 6.4
+def test_task_6_4_positive():
+    assert even_numbers_from_list([2, 3, 4, 5, 6]) == [2, 4, 6]
+
+def test_task_6_4_negative():
+    assert even_numbers_from_list([1, 3, 5]) == []
