@@ -80,39 +80,39 @@ print(find_substring(str1, str2)) # поверне -1
 """
 
 # task 7
-def homework_6_1_func():
+def define_unique_symbols():
     entered_words = input("input you phrase: ")
     unique_symbols = set(entered_words)
     if len(unique_symbols) > 10:
         print(True)
     else:
         print(False)
-homework_6_1_func()
+define_unique_symbols()
 
 # task 8
-def homework_6_4_func(*digits_list):
+def sort_by_even_numbers(*digits_list):
     even_numbers = []
     for num in digits_list:
         if num % 2 == 0:
             even_numbers.append(num)
     total = sum(even_numbers)
     return total
-result = homework_6_4_func(1, 5, 12, 45, 3, 78)
+result = sort_by_even_numbers(1, 5, 12, 45, 3, 78)
 print(result)
 
 # task 9
 
-def homework_3_task_6_func(monthly_payment: int):
+def salary_calculation(monthly_payment: int):
     total_sum = monthly_payment * 18
     return total_sum
-result = homework_3_task_6_func(1200)
+result = salary_calculation(1200)
 print(f"{result}")
 
 # task 10
 
-def homework_1_task_9(boys_total: int, boys_absent: int, girls_absent: int):
+def students_presence(boys_total: int, boys_absent: int, girls_absent: int):
     girls_total = boys_total // 2
     today_present = (boys_total - boys_absent) + (girls_total - girls_absent)
     return today_present
-total_present = homework_1_task_9(24,2,2)
+total_present = students_presence(24,2,2)
 print(total_present)
