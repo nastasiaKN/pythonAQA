@@ -102,6 +102,7 @@ print(total_order)
 розміщено щонайбільше 8 фото. Скільки сторінок знадобиться
 Ігорю, щоб вклеїти всі фото?
 """
+
 all_photos = 232
 photos_per_page = 8
 total_pages = all_photos // photos_per_page
@@ -124,7 +125,6 @@ def road_trip_stats(distance, liters_per_100km, fuel_tank_liters):
 fuel, refuels = road_trip_stats(1600, 9, 48)
 print(round(fuel, 2))
 print(refuels)
-
 
 # homework_6.2
 # Напишіть цикл, який буде вимагати від користувача ввести слово,
@@ -156,3 +156,5 @@ def even_numbers_from_list(numbers):
 
 total = even_numbers_from_list([1, 5, 12, 45, 3, 78])
 print(total)
+
+
