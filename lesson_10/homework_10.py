@@ -1,33 +1,26 @@
 import logging
-import os
-
-
-log_path = os.path.join(os.path.dirname(__file__), "login_system.log")
-print("log will be written to:", log_path)
-
-
-logger = logging.getLogger("log_event")
-logger.setLevel(logging.INFO)
-
-
-for handler in logger.handlers[:]:
-    logger.removeHandler(handler)
-
-
-file_handler = logging.FileHandler(log_path, mode='a', encoding='utf-8')
-formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
-file_handler.setFormatter(formatter)
-logger.addHandler(file_handler)
-
-console_handler = logging.StreamHandler()
-console_handler.setFormatter(formatter)
-logger.addHandler(console_handler)
 
 def log_event(username: str, status: str):
     """
     Логує подію входу в систему.
+
+    username: Ім'я користувача, яке входить в систему.
+
+    status: Статус події входу:
+
+    * success - успішний, логується на рівні інфо
+    * expired - пароль застаріває і його слід замінити, логується на рівні warning
+    * failed  - пароль невірний, логується на рівні error
     """
     log_message = f"Login event - Username: {username}, Status: {status}"
+
+    logging.basicConfig(
+        filename='login_system.log',
+        level=logging.INFO,
+        format='%(asctime)s - %(message)s',
+        force=True
+    )
+    logger = logging.getLogger("log_event")
 
     if status == "success":
         logger.info(log_message)
