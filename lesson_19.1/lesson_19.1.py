@@ -1,25 +1,28 @@
 import requests
 
-url = 'https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos'
-params = {
-    'sol': 1000,
-    'camera': 'fhaz',
-    'api_key': 'DEMO_KEY'
-}
+def save_mars_photos():
+    url = 'https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos'
+    params = {
+        'sol': 1000,
+        'camera': 'fhaz',
+        'api_key': 'DEMO_KEY'
+    }
 
-response = requests.get(url, params=params)
-data = response.json()
+    response = requests.get(url, params=params)
+    data = response.json()
+    photos = data.get('photos', [])
 
-photos = data['photos']
+    if not photos:
+        print("No pictures by set parameters")
+    else:
+        for i in photos[:5]:
+            img_url = i['img_src']
+            camera_name = i['camera']['name']
+            img = requests.get(img_url).content
 
-if not photos:
-    print("No pictures by set parameters")
-else:
-    for i in range(min(5, len(photos))):
-        img_url = photos[i]['img_src']
-        img = requests.get(img_url).content
+            with open(f"mars_photo{camera_name}.jpg", 'wb') as f:
+                f.write(img)
 
-        with open(f'mars_photo{i+1}.jpg', 'wb') as f:
-            f.write(img)
+            print(f"Saved: mars_photo{camera_name}.jpg")
 
-        print(f'Saved: mars_photo{i+1}.jpg')
+save_mars_photos()
