@@ -25,4 +25,5 @@ def save_mars_photos():
 
             print(f"Saved: mars_photo{camera_name}.jpg")
 
-save_mars_photos()
+if __name__ == '__main__':
+    save_mars_photos()
