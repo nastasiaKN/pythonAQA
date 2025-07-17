@@ -4,6 +4,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
+
 class NovaPoshtaTracker:
     def __init__(self):
         options = webdriver.ChromeOptions()
@@ -15,13 +16,13 @@ class NovaPoshtaTracker:
         self.driver.get("https://tracking.novaposhta.ua/#/uk")
 
     def track(self, number: str) -> str:
-
-        input_elem = self.wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, "input.track__form-group-input")))
+        input_elem = self.wait.until(EC.presence_of_element_located(
+            (By.CSS_SELECTOR, "input.track__form-group-input")
+        ))
         input_elem.send_keys(number)
 
         search_button = self.driver.find_element(By.ID, "np-number-input-desktop-btn-search-en")
         search_button.click()
-
 
         self.wait.until(EC.url_contains("/chat/messages"))
         time.sleep(2)
@@ -34,11 +35,9 @@ class NovaPoshtaTracker:
         except Exception:
             pass
 
-
-        status_elem = self.wait.until(
-            EC.presence_of_element_located(
-                (By.XPATH, "//div[contains(text(),'Отримана') or contains(text(),'Доставлено')]"))
-        )
+        status_elem = self.wait.until(EC.presence_of_element_located(
+            (By.XPATH, "//div[contains(text(),'Отримана') or contains(text(),'Доставлено')]")
+        ))
         return status_elem.text.strip()
 
     def close(self):
