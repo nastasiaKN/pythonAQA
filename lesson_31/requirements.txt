@@ -1,1 +1,6 @@
 pytest
+allure-pytest
+requests
+selenium
+faker
+flask
