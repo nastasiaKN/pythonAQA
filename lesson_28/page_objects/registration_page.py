@@ -1,21 +1,19 @@
 from selenium.webdriver.common.by import By
-from .base_page import BasePage
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from lesson_28.locators.registration_page_locators import RegistrationPageLocators
 
-class RegistrationPageLocators:
-    NAME = (By.ID, "signupName")
-    LAST_NAME = (By.ID, "signupLastName")
-    EMAIL = (By.ID, "signupEmail")
-    PASSWORD = (By.ID, "signupPassword")
-    REPEAT_PASSWORD = (By.ID, "signupRepeatPassword")
-    REGISTER_BUTTON = (By.XPATH, "//button[contains(text(),'Register')]")
+class RegistrationPage:
+    def __init__(self, driver):
+        self.driver = driver
+        self.wait = WebDriverWait(driver, 10)
 
-class RegistrationPage(BasePage):
     def fill_registration_form(self, name, last_name, email, password):
-        self.find(RegistrationPageLocators.NAME).send_keys(name)
-        self.find(RegistrationPageLocators.LAST_NAME).send_keys(last_name)
-        self.find(RegistrationPageLocators.EMAIL).send_keys(email)
-        self.find(RegistrationPageLocators.PASSWORD).send_keys(password)
-        self.find(RegistrationPageLocators.REPEAT_PASSWORD).send_keys(password)
+        self.driver.find_element(*RegistrationPageLocators.NAME).send_keys(name)
+        self.driver.find_element(*RegistrationPageLocators.LAST_NAME).send_keys(last_name)
+        self.driver.find_element(*RegistrationPageLocators.EMAIL).send_keys(email)
+        self.driver.find_element(*RegistrationPageLocators.PASSWORD).send_keys(password)
+        self.driver.find_element(*RegistrationPageLocators.PASSWORD_CONFIRM).send_keys(password)
 
     def submit(self):
-        self.find(RegistrationPageLocators.REGISTER_BUTTON).click()
+        self.wait.until(EC.element_to_be_clickable(RegistrationPageLocators.SUBMIT_BUTTON)).click()
