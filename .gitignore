@@ -172,3 +172,27 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+# .idea and VS Code settings
+.idea/
+.vscode/
+
+# Python
+
+*.pyc
+*.pyo
+*.pyd
+
+# Test output
+allure-results/
+allure_reports/
+single-report/
+uploads/
+
+# Temporary files
+
+*.tmp
+
+# Images (если не нужны в git)
+mars_photo_0.jpg
+mars_photo_1.jpg
+mars_photo_FHAZ.jpg
