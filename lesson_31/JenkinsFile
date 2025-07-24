@@ -6,12 +6,6 @@ pipeline {
     }
 
     stages {
-        stage('Checkout Code') {
-            steps {
-                git 'https://github.com/nastasiiaKN/pythonAQA.git'
-            }
-        }
-
         stage('Install Dependencies') {
             steps {
                 sh 'python3 -m venv venv'
@@ -37,8 +31,8 @@ pipeline {
         always {
             emailext(
                 to: 'anastasiyaikyaysha@gmail.com',
-                subject: "Jenkins Job: ${currentBuild.fullDisplayName}",
-                body: "Result: ${currentBuild.currentResult}\n\nCheck console output at ${env.BUILD_URL}",
+                subject: "Jenkins Build: ${currentBuild.fullDisplayName}",
+                body: "Build finished with status: ${currentBuild.currentResult}\n\nCheck: ${env.BUILD_URL}",
                 attachLog: true
             )
         }
