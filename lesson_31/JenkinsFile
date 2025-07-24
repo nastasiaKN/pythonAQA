@@ -1,0 +1,46 @@
+pipeline {
+    agent any
+
+    environment {
+        VENV_PATH = 'venv'
+    }
+
+    stages {
+        stage('Checkout Code') {
+            steps {
+                git 'https://github.com/nastasiiaKN/pythonAQA.git'
+            }
+        }
+
+        stage('Install Dependencies') {
+            steps {
+                sh 'python3 -m venv venv'
+                sh './venv/bin/pip install --upgrade pip'
+                sh './venv/bin/pip install -r lesson_31/requirements.txt'
+            }
+        }
+
+        stage('Run Tests') {
+            steps {
+                sh './venv/bin/pytest lesson_31/test_app.py --junitxml=results.xml'
+            }
+        }
+
+        stage('Publish Test Report') {
+            steps {
+                junit 'results.xml'
+            }
+        }
+    }
+
+    post {
+        always {
+            emailext(
+                to: 'anastasiyaikyaysha@gmail.com',
+                subject: "Jenkins Job: ${currentBuild.fullDisplayName}",
+                body: "Result: ${currentBuild.currentResult}\n\nCheck console output at ${env.BUILD_URL}",
+                attachLog: true
+            )
+        }
+    }
+}
