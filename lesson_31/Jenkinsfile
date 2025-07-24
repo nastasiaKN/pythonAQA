@@ -15,7 +15,7 @@ pipeline {
 
         stage('Run Tests') {
             steps {
-                sh './${VENV_PATH}/bin/pytest lesson_31/test_hw_31.py --alluredir=allure-results'
+                sh './${VENV_PATH}/bin/pytest lesson_31/test_app.py --alluredir=allure-results'
             }
         }
 
