@@ -10,13 +10,20 @@ pipeline {
 
         stage('Install dependencies') {
             steps {
-                sh 'pip install -r requirements.txt'
+                sh '''
+                    python3 -m venv venv
+                    . venv/bin/activate
+                    pip install -r requirements.txt
+                '''
             }
         }
 
         stage('Run tests') {
             steps {
-                sh 'pytest --alluredir=allure-results'
+                sh '''
+                    . venv/bin/activate
+                    pytest --alluredir=allure-results
+                '''
             }
         }
 
@@ -29,9 +36,8 @@ pipeline {
 
     post {
         always {
-            mail to: 'InsertYour@Mail.Here',
-                 subject: "Pipeline result: ${currentBuild.fullDisplayName}",
-                 body: "Build ${currentBuild.result}: ${env.BUILD_URL}"
+            echo "Build finished with status: ${currentBuild.result}"
+
         }
     }
 }
