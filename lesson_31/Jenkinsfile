@@ -2,34 +2,34 @@ pipeline {
     agent any
 
     stages {
-        stage('Checkout') {
+        stage('Install Dependencies') {
             steps {
-                checkout scm
+                sh 'python3 -m venv venv'
+                sh './venv/bin/pip install -r lesson_31/requirements.txt'
             }
         }
 
-        stage('Install dependencies') {
+        stage('Run Tests') {
             steps {
-                sh 'pip install -r requirements.txt'
+                sh './venv/bin/pytest lesson_31/test_app.py --alluredir=allure-results'
             }
         }
 
-        stage('Run tests') {
+        stage('Publish Test Report') {
             steps {
-                sh 'pytest lesson_31/test_app.py --alluredir=allure-results'
-            }
-        }
-
-        stage('Generate Allure Report') {
-            steps {
-                sh 'allure generate --single-file allure-results -o single-report --clean'
+                sh 'allure generate --single-file allure-results -o allure-report --clean'
             }
         }
     }
 
     post {
         always {
-            archiveArtifacts artifacts: 'single-report/**', fingerprint: true
+            emailext(
+                to: 'anastasiyakiyasha@gmail.com',
+                subject: "Jenkins Job Result: ${currentBuild.fullDisplayName}",
+                body: "Status: ${currentBuild.currentResult}"
+            )
         }
     }
 }
+
